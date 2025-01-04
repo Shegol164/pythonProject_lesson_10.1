@@ -1,4 +1,4 @@
-def filter_by_state(dictionary):
+def filter_by_state(dictionary: list[dict[str, any]]) -> list[dict[str, any]]:
     """Функция возвращает список отсортированный по значению ключа 'EXECUTED' и 'CANCELED'"""
     new_dictionary_1 = []
     new_dictionary_2 = []
