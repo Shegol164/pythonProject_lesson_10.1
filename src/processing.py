@@ -11,7 +11,7 @@ def filter_by_state(dictionary: list[dict[str, any]]) -> list[dict[str, any]]:
     return f"{new_dictionary_1}\n{new_dictionary_2}"
 
 
-def sort_by_date(dictionary):
+def sort_by_date(dictionary: list[dict[str, any]]) -> list[dict[str, any]]:
     """Функция принимает на вход словарь и сортирует по дате по убыванию"""
     sorted_dictionary = sorted(dictionary, key=lambda x: x["date"], reverse=True)
     return sorted_dictionary
