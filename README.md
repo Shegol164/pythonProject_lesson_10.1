@@ -7,4 +7,6 @@
 - 10.1 Продвинутый Git
 
 ### Установка
-1. 
+1. Клонируйте репозиторий
+   git@github.com:Shegol164/pythonProject_lesson_10.1.git
+2.
