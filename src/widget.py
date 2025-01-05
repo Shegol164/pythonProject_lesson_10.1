@@ -2,7 +2,7 @@ from src.masks import get_mask_account, get_mask_card_number
 import datetime
 
 
-def mask_account_card(card_or_account: str) -> [str]:
+def mask_account_card(card_or_account: str) -> str:
     """
     Функция mask_account_card принимает на вход один из аргументов. Выводит маску. Пример:
     Visa Platinum 7000792289606361 # входной аргумент
