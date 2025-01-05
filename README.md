@@ -11,5 +11,5 @@
 git@github.com:Shegol164/pythonProject_lesson_10.1.git
    2. Перейдите в директорию проекта:
  pythonProject_lesson_10.1
-   3.
+   3.Установите необходимые зависимости:
 
