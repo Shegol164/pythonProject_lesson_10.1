@@ -6,7 +6,8 @@
 - 9.2 Осовы Git
 - 10.1 Продвинутый Git
 
-### Установка
-1. Клонируйте репозиторий
-   git@github.com:Shegol164/pythonProject_lesson_10.1.git
-2.
+### Установка:
+1. Клонируйте репозиторий:
+   - git@github.com:Shegol164/pythonProject_lesson_10.1.git
+2. Перейдите в директорию проекта:
+   - 
