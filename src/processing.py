@@ -1,17 +1,17 @@
-def filter_by_state(dictionary):
-    """Функция возвращает список отсортированный по значению ключа 'EXECUTED' и 'CANCELED'"""
-    new_dictionary_1 = []
-    new_dictionary_2 = []
-    for i in dictionary:
-        if i["state"] == "EXECUTED":
-            new_dictionary_1.append(i)
-    for i in dictionary:
-        if i["state"] == "CANCELED":
-            new_dictionary_2.append(i)
-    return f"{new_dictionary_1}\n{new_dictionary_2}"
+from typing import Dict, List
 
 
-def sort_by_date(dictionary):
-    """Функция принимает на вход словарь и сортирует по дате по убыванию"""
-    sorted_dictionary = sorted(dictionary, key=lambda x: x["date"], reverse=True)
-    return sorted_dictionary
+def filter_by_state(data_list: List[Dict], state: str = "EXECUTED") -> List[Dict]:
+    """Принимает список словарей и ключ: state (по умолчанию 'EXECUTED').
+    Возвращает новый список словарей, содержащий словари соответствующих ключ"""
+    new_dictionary = []
+    for i in data_list:
+        if i["state"] == state:
+            new_dictionary.append(i)
+    return new_dictionary
+
+
+def sort_by_date(data_list: List[Dict], reverse: bool = True) -> List[Dict]:
+    """Функция принимает список словарей и параметр сортировки(по умолчанию "True" — 'CANCELED').
+    Функция возвращает новый список, отсортированный по дате(date)"""
+    return sorted(data_list, key=lambda x: x["date"], reverse=reverse)
