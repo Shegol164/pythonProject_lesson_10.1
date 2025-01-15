@@ -8,6 +8,7 @@ packages = [{include = "pythonproject_lesson_9"}]
 
 [tool.poetry.dependencies]
 python = "^3.13"
+pytest = "^8.3.4"
 
 
 [tool.poetry.group.lint.dependencies]

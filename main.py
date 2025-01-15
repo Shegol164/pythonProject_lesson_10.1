@@ -1,5 +1,12 @@
+from src.masks import get_mask_card_number, get_mask_account
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
+
+if __name__ == "__main__":
+    card_number = input()
+    account = input()
+    print(get_mask_card_number(card_number))
+    print(get_mask_account(account))
 
 if __name__ == "__main__":
     print(mask_account_card(input()))
