@@ -1,38 +1,68 @@
-from src.masks import get_mask_card_number, get_mask_account
 import pytest
 
-
-def test_mask_card_number(mask):
-    assert get_mask_card_number('1111111111111111') == mask
+from src.masks import get_mask_account, get_mask_card_number
 
 
-def test_mask_card_number_min(mask_min):
-    assert get_mask_card_number('1111111111') == mask_min
+def test_mask_card_number(expected_mask: str) -> str:
+    assert get_mask_card_number("1111111111111111") == expected_mask
 
 
-def test_mask_card_number_max(mask_max):
-    assert get_mask_card_number('11111111111111111111') == mask_max
+def test_mask_card_number_min(expected_mask_min: str) -> str:
+    assert get_mask_card_number("1111111111") == expected_mask_min
 
 
-def test_mask_card_number_zero(mask_zero):
-    assert get_mask_card_number('') == mask_zero
+def test_mask_card_number_max(expected_mask_max: str) -> str:
+    assert get_mask_card_number("11111111111111111111") == expected_mask_max
 
 
-def test_mask_card_number_letter(mask_letter):
-    assert get_mask_card_number('aaaaaaaaaaaaaaaa') == mask_letter
+def test_mask_card_number_zero(expected_mask_zero: str) -> str:
+    assert get_mask_card_number("") == expected_mask_zero
 
 
-def test_mask_card_number_letter_min(mask_letter_min):
-    assert get_mask_card_number('aaaaaaaaaa') == mask_letter_min
+def test_mask_card_number_letter(expected_mask_letter: str) -> str:
+    assert get_mask_card_number("aaaaaaaaaaaaaaaa") == expected_mask_letter
 
 
-def test_mask_card_number_letter_max(mask_letter_max):
-    assert get_mask_card_number('aaaaaaaaaaaaaaaa') == mask_letter_max
+def test_mask_card_number_letter_min(expected_mask_letter_min: str) -> str:
+    assert get_mask_card_number("aaaaaaaaaa") == expected_mask_letter_min
 
 
-def test_get_mask_account(mask_account):
-    assert get_mask_account('11111111111111111111') == mask_account
+def test_mask_card_number_letter_max(expected_mask_letter_max: str) -> str:
+    assert get_mask_card_number("aaaaaaaaaaaaaaaa") == expected_mask_letter_max
 
 
-def test_get_mask_card_number_zero(mask_account_zero):
-    assert get_mask_account('') == mask_account_zero
+@pytest.mark.parametrize(
+    "string, expected_result",
+    [
+        ("11111111111111111", "1111 11** **** 1111"),
+        ("1111111111", "1111 11** **** 1111"),
+        ("11111111111111111111", "1111 11** **** 1111"),
+        ("", " ** **** "),
+    ],
+)
+def test_get_mask_card_number(string, expected_result):
+    assert get_mask_card_number(string) == expected_result
+
+
+def test_get_mask_account(expected_mask: str) -> str:
+    assert get_mask_account("11111111111111111111") == expected_mask
+
+
+def test_get_mask_account_min(expected_mask_account_min: str) -> str:
+    assert get_mask_account("11111111") == expected_mask_account_min
+
+
+def test_get_mask_account_max(expected_mask_account_max: str) -> str:
+    assert get_mask_account("111111111111111111111111111111") == expected_mask_account_max
+
+
+def test_get_mask_card_number_zero(expected_mask_account_zero: str) -> str:
+    assert get_mask_account("") == expected_mask_account_zero
+
+
+@pytest.mark.parametrize(
+    "string, expected_result",
+    [("1111111111111111", "**1111"), ("1111111111", "**1111"), ("11111111111111111111", "**1111"), ("", "**")],
+)
+def test_mask_account(string, expected_result):
+    assert get_mask_account(string) == expected_result
