@@ -40,12 +40,12 @@ def test_mask_card_number_letter_max(expected_mask_letter_max: str) -> str:
         ("", " ** **** "),
     ],
 )
-def test_get_mask_card_number(string, expected_result):
+def test_get_mask_card_number(string: str, expected_result: str)->None:
     assert get_mask_card_number(string) == expected_result
 
 
-def test_get_mask_account(expected_mask: str) -> str:
-    assert get_mask_account("11111111111111111111") == expected_mask
+def test_get_mask_account(expected_mask_account: str) -> str:
+    assert get_mask_account("11111111111111111111") == expected_mask_account
 
 
 def test_get_mask_account_min(expected_mask_account_min: str) -> str:
