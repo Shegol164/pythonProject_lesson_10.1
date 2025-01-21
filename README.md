@@ -46,7 +46,7 @@ if __name__ == "__main__":
     print(sorted_descending)
     print(sorted_acscending)
 
-# Тесты:
+# Тесты
 Для всех функций написаны подробные тесты в папке tests:
 - test_masks
 - test_widget
