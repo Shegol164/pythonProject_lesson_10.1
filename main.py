@@ -1,9 +1,18 @@
+from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
 
 if __name__ == "__main__":
-    print(mask_account_card(input()))
-    print(get_date("2024-03-11T02:26:18.671407"))
+    card_number = input()
+    account = input()
+    print(get_mask_card_number(card_number))
+    print(get_mask_account(account))
+
+if __name__ == "__main__":
+    card_or_account = input()
+    date = "2024-03-11T02:26:18.671407"
+    print(mask_account_card(card_or_account))
+    print(get_date(date))
 
 if __name__ == "__main__":
     data_list = [
