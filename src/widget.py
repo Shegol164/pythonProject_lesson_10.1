@@ -10,6 +10,8 @@ def mask_account_card(card_or_account: str) -> str:
     Счет 73654108430135874305 # входной аргумент
     Счет **4305 # выход функции
     """
+    if not card_or_account:
+        return "Пустая строка"
     card_or_account_splitted = card_or_account.split()
     card_or_account_type = " ".join(card_or_account_splitted[:-1])
 
@@ -22,6 +24,8 @@ def mask_account_card(card_or_account: str) -> str:
 def get_date(date: str) -> str:
     """Функция принимает на вход дату в формате 2024-03-11T02:26:18.671407 и возвращает в формате 11.03.2024"""
 
+    if not date:
+        return "Пустая строка"
     now = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
     new_data = now.strftime("%d.%m.%Y")
     return new_data
