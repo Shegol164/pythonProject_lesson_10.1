@@ -46,8 +46,29 @@ if __name__ == "__main__":
     print(sorted_descending)
     print(sorted_acscending)
 
-## Тесты:
+# Тесты:
 Для всех функций написаны подробные тесты в папке tests:
 - test_masks
 - test_widget
-- processing 
+- test_processing 
+
+Протестированы разные сценарий формата ввода и вывода 
+
+Например: test_processing
+- def test_filter_by_state_executed(expected_filter_by_state_executed: List[Dict]) -> List[Dict]:
+    assert filter_by_state(expected_filter_by_state_executed) == expected_filter_by_state_executed
+
+- def test_filter_by_state_canceled(expected_filter_by_state_canceled: List[Dict]) -> List[Dict]:
+    assert filter_by_state(expected_filter_by_state_canceled, "CANCELED") == expected_filter_by_state_canceled
+
+- def test_filter_by_state_zero(expected_filter_by_state_zero: List[Dict]) -> str:
+    assert filter_by_state(data_list=[]) == expected_filter_by_state_zero
+
+- def test_sort_by_date(expected_sort_by_date: List[Dict]) -> List[Dict]:
+    assert sort_by_date(expected_sort_by_date) == expected_sort_by_date
+
+- def test_sort_by_date_false(expected_sort_by_date_false: List[Dict]) -> List[Dict]:
+    assert sort_by_date(expected_sort_by_date_false, False) == expected_sort_by_date_false
+
+- def test_sort_by_date_zero(expected_sort_by_date_zero: List[Dict]) -> str:
+    assert sort_by_date(data_list=[]) == expected_sort_by_date_zero
