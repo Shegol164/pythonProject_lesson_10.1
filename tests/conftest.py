@@ -19,7 +19,7 @@ def expected_mask_max() -> str:
 
 @pytest.fixture
 def expected_mask_zero() -> str:
-    return " ** **** "
+    return "Пустая строка"
 
 
 @pytest.fixture
@@ -54,7 +54,7 @@ def expected_mask_account_max() -> str:
 
 @pytest.fixture
 def expected_mask_account_zero() -> str:
-    return "**"
+    return "Пустая строка"
 
 
 @pytest.fixture
