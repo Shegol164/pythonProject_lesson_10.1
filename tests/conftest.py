@@ -1,6 +1,6 @@
+from typing import Any, Dict, Iterable, List
+
 import pytest
-from typing import Dict, List, Any,Iterable
-import src.generators as generators
 
 
 @pytest.fixture
@@ -203,6 +203,3 @@ def transactions() -> Iterable[Dict]:
             "to": "Счет 14211924144426031657",
         },
     ]
-
-
-
