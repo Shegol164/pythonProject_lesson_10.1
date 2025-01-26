@@ -8,17 +8,13 @@ if __name__ == "__main__":
     account = input()
     print(get_mask_card_number(card_number))
     print(get_mask_account(account))
-    
 print("#" * 119)
-
 if __name__ == "__main__":
     card_or_account = input()
     date = "2024-03-11T02:26:18.671407"
     print(mask_account_card(card_or_account))
     print(get_date(date))
-
 print("#" * 119)
-
 if __name__ == "__main__":
     data_list = [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
@@ -34,9 +30,7 @@ if __name__ == "__main__":
     print(only_canceled)
     print(sorted_descending)
     print(sorted_acscending)
-
 print("#" * 119)
-
 if __name__ == "__main__":
     transactions = [
         {
@@ -96,5 +90,4 @@ if __name__ == "__main__":
 
 for card in card_number_generator(1, 11):
     print(card)
-
 print("#" * 119)
