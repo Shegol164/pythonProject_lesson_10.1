@@ -40,7 +40,7 @@ def test_mask_card_number_letter_max(expected_mask_letter_max: str) -> str:
         ("", "Пустая строка"),
     ],
 )
-def test_get_mask_card_number(string: str, expected_result: str)->None:
+def test_get_mask_card_number(string: str, expected_result: str) -> None:
     assert get_mask_card_number(string) == expected_result
 
 
@@ -62,7 +62,12 @@ def test_get_mask_card_number_zero(expected_mask_account_zero: str) -> str:
 
 @pytest.mark.parametrize(
     "string, expected_result",
-    [("1111111111111111", "**1111"), ("1111111111", "**1111"), ("11111111111111111111", "**1111"), ("", "Пустая строка")],
+    [
+        ("1111111111111111", "**1111"),
+        ("1111111111", "**1111"),
+        ("11111111111111111111", "**1111"),
+        ("", "Пустая строка"),
+    ],
 )
-def test_mask_account(string, expected_result):
+def test_mask_account(string: str, expected_result: str) -> None:
     assert get_mask_account(string) == expected_result
