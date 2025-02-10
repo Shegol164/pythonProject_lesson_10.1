@@ -3,6 +3,9 @@ from src.generators import card_number_generator, filter_by_currency, transactio
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
+from src.utils import operation
+from src.external_api import operation_transaction
+
 
 if __name__ == "__main__":
     card_number = input()
@@ -98,3 +101,8 @@ my_function(1, 3)
 
 my_function(4, 3)
 print("#" * 119)
+
+print(operation("operations"))
+transactions = operation("operations")
+rub_amount = operation_transaction(transactions[1])
+print(f"Сумма сделки в рублях: {rub_amount}")
