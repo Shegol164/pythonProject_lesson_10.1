@@ -104,5 +104,6 @@ print("#" * 119)
 
 print(operation("operations"))
 transactions = operation("operations")
-rub_amount = operation_transaction(transactions[1])
+rub_amount = operation_transaction(transactions[4])
 print(f"Сумма сделки в рублях: {rub_amount}")
+print("#" * 119)
