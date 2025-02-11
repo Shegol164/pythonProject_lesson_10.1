@@ -7,6 +7,7 @@
 - 10.1 Продвинутый Git
 - 10.2 Тестирование. Pytest
 - 11.1 Включения и генераторы
+- 12.1  Библиотеки json, requests и datetime
 
 ## Установка:
    1. Клонируйте репозиторий:
@@ -20,6 +21,8 @@ from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
 from src.decorators import my_function
+from src.utils import operation
+from src.external_api import operation_transaction
 
 if __name__ == "__main__":
     card_number = input()
@@ -123,6 +126,13 @@ my_function(1, 3)
 my_function(4, 3)
 
 print("#" * 119)
+
+print(operation("operations"))
+transactions = operation("operations")
+rub_amount = operation_transaction(transactions[4])
+print(f"Сумма сделки в рублях: {rub_amount}")
+print("#" * 119)
+
 # Тесты
 Для всех функций написаны подробные тесты в папке tests:
 - test_masks
@@ -130,6 +140,8 @@ print("#" * 119)
 - test_processing 
 - test_generators
 - test_decorators
+- test_external_api.py
+- test_utils.py
 
 Протестированы разные сценарий формата ввода и вывода 
 
@@ -203,3 +215,18 @@ print("#" * 119)
         captured.out
         == "Запуск функции error_function, Inputs: (1, 3), kwargs: {}\nОшибка в функции error_function: error\n"
     )
+## test_external_api.py:
+- @patch("requests.get")
+def test_currency_conversion_usd_to_rub(mock_get) -> None:
+    mock_get.return_value.json.return_value = {"result": 75.0}
+    mock_get.return_value.status_code = 200
+    transaction = {"operationAmount": {"amount": 1, "currency": {"code": "USD"}}}
+    result = operation_transaction(transaction)
+    assert result, 75.0
+    mock_get.assert_called_once_with(
+        "https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=1", headers={"apikey": api_key}
+    )
+## test_utils.py:
+- def test_operation(mock_operation_json_file):
+    transactions = operation("operations")
+    assert len(transactions) == 101
