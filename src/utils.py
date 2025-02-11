@@ -1,13 +1,14 @@
 import json
 import os
-from typing import Any
 from pathlib import Path
+from typing import Any
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path_1 = os.path.join(current_dir, "../logs", "utils.log")
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT_DIR / "data"
+
 
 def operation(open_file: Any) -> Any:
     """Принимает на вход имя JSON-файла по пути ./data/ и
