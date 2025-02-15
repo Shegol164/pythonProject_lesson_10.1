@@ -19,6 +19,7 @@ from src.generators import card_number_generator, filter_by_currency, transactio
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
+from src.decorators import my_function
 
 if __name__ == "__main__":
     card_number = input()
@@ -114,18 +115,25 @@ if __name__ == "__main__":
 for card in card_number_generator(1, 11):
     print(card)
 
-print("#" * 119)
+print("#" * 119) 
 
+
+my_function(1, 3)
+
+my_function(4, 3)
+
+print("#" * 119)
 # Тесты
 Для всех функций написаны подробные тесты в папке tests:
 - test_masks
 - test_widget
 - test_processing 
 - test_generators
+- test_decorators
 
 Протестированы разные сценарий формата ввода и вывода 
 
-Например: test_processing
+## Например: test_processing
 - def test_filter_by_state_executed(expected_filter_by_state_executed: List[Dict]) -> List[Dict]:
     assert filter_by_state(expected_filter_by_state_executed) == expected_filter_by_state_executed
 
@@ -144,7 +152,7 @@ print("#" * 119)
 - def test_sort_by_date_zero(expected_sort_by_date_zero: List[Dict]) -> str:
     assert sort_by_date(data_list=[]) == expected_sort_by_date_zero
 
-test_generators:
+## test_generators:
 - def test_filter_by_currency(transactions) -> None:
     generator = filter_by_currency(transactions)
     assert next(generator)
@@ -173,3 +181,25 @@ test_generators:
 - def test_card_number_generator_error() -> None:
     with pytest.raises(IndexError, match ="Неправильный ввод данных"):
         list(card_number_generator(5, 0))
+
+## test_decorators:
+- def test_my_function(capsys):
+    my_function(1, 3)
+    captured = capsys.readouterr()
+    assert captured.out == (
+        "Запуск функции my_function, Inputs: (1, 3), kwargs: {}\n"
+        "Результат: 4\n"
+        "Функция my_function успешно выполнена.\n"
+    )
+
+
+- def test_error_function(capsys):
+    try:
+        error_function(1, 3)
+    except ValueError:
+        pass
+    captured = capsys.readouterr()
+    assert (
+        captured.out
+        == "Запуск функции error_function, Inputs: (1, 3), kwargs: {}\nОшибка в функции error_function: error\n"
+    )
