@@ -16,8 +16,9 @@ def get_mask_card_number(card_number: str) -> str:
     if not card_number:
         logger.error("Введена пустая строка")
         return "Пустая строка"
-    logger.info("Введен номер карты")
-    return f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
+    mask_card = f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
+    logger.info(f"Введен номер карты: {mask_card}")
+    return mask_card
 
 
 def get_mask_account(account: str) -> str:
@@ -30,5 +31,6 @@ def get_mask_account(account: str) -> str:
     if not account:
         logger.error("Введена пустая строка")
         return "Пустая строка"
-    logger.info("Введен номер счета")
-    return f"**{account[-4:]}"
+    mask_account = f"**{account[-4:]}"
+    logger.info(f"Введен номер счета: {mask_account}")
+    return mask_account
