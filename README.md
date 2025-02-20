@@ -8,6 +8,7 @@
 - 10.2 Тестирование. Pytest
 - 11.1 Включения и генераторы
 - 12.1  Библиотеки json, requests и datetime
+- 13.1 Библиотеки csv и pandas
 
 ## Установка:
    1. Клонируйте репозиторий:
@@ -23,6 +24,7 @@ from src.widget import get_date, mask_account_card
 from src.decorators import my_function
 from src.utils import operation
 from src.external_api import operation_transaction
+from src.reading_file import reading_file_csv,reading_file_xlsx
 
 if __name__ == "__main__":
     card_number = input()
@@ -133,6 +135,16 @@ rub_amount = operation_transaction(transactions[4])
 print(f"Сумма сделки в рублях: {rub_amount}")
 print("#" * 119)
 
+if __name__ == "__main__":
+    file_path_csv = os.path.join("data_1", "transactions.csv")
+    operations = reading_file_csv(file_path_csv)
+    for operation in operations:
+        print(operation)
+
+if __name__ == "__main__":
+    file_path_xlsx = os.path.join("data_1", "transactions_excel.xlsx")
+    print(reading_file_xlsx(file_path_xlsx))
+
 # Тесты
 Для всех функций написаны подробные тесты в папке tests:
 - test_masks
@@ -142,6 +154,7 @@ print("#" * 119)
 - test_decorators
 - test_external_api.py
 - test_utils.py
+- test_reading_file.py
 
 Протестированы разные сценарий формата ввода и вывода 
 
@@ -230,3 +243,26 @@ def test_currency_conversion_usd_to_rub(mock_get) -> None:
 - def test_operation(mock_operation_json_file):
     transactions = operation("operations")
     assert len(transactions) == 101
+
+## test_reading_file.py:
+@patch("builtins.open", new_callable=mock_open, read_data="id,state\n650703,EXECUTED\n3598919,EXECUTED")
+def test_reading_file_csv(mocked_open):
+    # Вызываем функцию с тестовым файлом
+    result = reading_file_csv("test.csv")
+    # Проверяем результат
+    expected_result = [{"id": "650703", "state": "EXECUTED"}, {"id": "3598919", "state": "EXECUTED"}]
+    assert result == expected_result
+
+    mocked_open.assert_called_once_with("test.csv", "r", encoding="utf-8")
+
+
+@patch("pandas.read_excel")
+def test_reading_file_xlsx(mocked_open):
+    # Вызываем функцию с тестовым файлом
+    read_data = {"id": [65073503, 359568919], "state": ["EXECUTED", "EXECUTED"]}
+    mock_data = pd.DataFrame(read_data)
+    mocked_open.return_value = mock_data
+    result = reading_file_xlsx("test")
+    # Проверяем результат
+    expected_result = [{"id": 65073503, "state": "EXECUTED"}, {"id": 359568919, "state": "EXECUTED"}]
+    assert result == expected_result
