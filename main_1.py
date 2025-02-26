@@ -1,5 +1,6 @@
-from src.reading_file import reading_file_csv,reading_file_xlsx
 import os
+
+from src.reading_file import reading_file_csv, reading_file_xlsx
 
 if __name__ == "__main__":
     file_path_csv = os.path.join("data_1", "transactions.csv")

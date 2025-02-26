@@ -27,6 +27,6 @@ def get_date(date: str) -> str:
 
     if not date:
         return "Пустая строка"
-    now = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
+    now = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ")
     new_data = now.strftime("%d.%m.%Y")
     return new_data
