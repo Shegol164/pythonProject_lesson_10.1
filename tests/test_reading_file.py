@@ -2,7 +2,8 @@ from unittest.mock import mock_open, patch
 
 import pandas as pd
 
-from src.reading_file import reading_file_csv,reading_file_xlsx
+from src.reading_file import reading_file_csv, reading_file_xlsx
+
 
 @patch("builtins.open", new_callable=mock_open, read_data="id,state\n650703,EXECUTED\n3598919,EXECUTED")
 def test_reading_file_csv(mocked_open):
